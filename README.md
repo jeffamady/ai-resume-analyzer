@@ -82,7 +82,6 @@ http://localhost:8000/docs
 ### GET /
 
 Welcome message
-![alt text](image.png)
 <img width="1138" height="893" alt="image" src="https://github.com/user-attachments/assets/952e7039-9b51-4431-bff1-62638e377792" />
 
 ### POST /api/v1/resume/analyze
