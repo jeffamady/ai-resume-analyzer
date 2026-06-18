@@ -1,0 +1,34 @@
+[
+  {
+    "id": "35fddafa-623d-4efe-a7c5-b6f6f7506909",
+    "request_id": "4a6221e8-a498-4839-a731-0440181f4a58",
+    "strengths": [
+      "Strong alignment with Python Backend Developer role requirements.",
+      "5 years of relevant software engineering experience, exceeding the 3+ year requirement.",
+      "Hands-on experience with Python, FastAPI, PostgreSQL, Docker, AWS, REST APIs, and Git.",
+      "Quantified impact: reduced API/system latency by 35% and built APIs used by 500,000+ users.",
+      "Leadership and mentoring experience as a senior engineer."
+    ],
+    "weaknesses": [
+      "CI/CD experience is not mentioned, despite being listed in the job requirements.",
+      "Resume could provide more detail on AWS services used and deployment practices.",
+      "Collaboration with frontend teams is not explicitly stated, though cross-functional collaboration is mentioned.",
+      "Education section lacks graduation year, university name, and location."
+    ],
+    "recommendations": [
+      "Add specific CI/CD tools and practices if applicable, such as GitHub Actions, Jenkins, GitLab CI, or AWS CodePipeline.",
+      "Mention specific AWS services used, such as EC2, Lambda, ECS, RDS, S3, or CloudWatch.",
+      "Include examples of maintaining production backend systems, monitoring, debugging, and incident response.",
+      "Add more detail about collaboration with frontend/product teams to match the responsibilities.",
+      "Expand education section with institution name and graduation year."
+    ],
+    "missing_skills": [
+      "CI/CD",
+      "Specific AWS services",
+      "Production monitoring/observability",
+      "Frontend team collaboration details"
+    ],
+    "score": 88,
+    "professional_summary": "Michael Johnson is a strong candidate for the Python Backend Developer role, with 5 years of experience building scalable backend services and REST APIs using Python, FastAPI, PostgreSQL, Docker, AWS, and Git. His measurable performance improvements, high-scale API experience, and mentoring background make him well suited for a senior backend position. The main gap is the lack of stated CI/CD experience and limited detail around AWS services and deployment practices."
+  }
+]
