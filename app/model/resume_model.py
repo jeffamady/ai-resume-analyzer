@@ -13,6 +13,16 @@ class ResumeRequestOut(BaseModel):
 
 
 class ResumeResponse(BaseModel):
+    request_id: str
+    strengths: list[str]
+    weaknesses: list[str]
+    recommendations: list[str]
+    missing_skills: list[str]
+    score: int
+    professional_summary: str
+
+
+class ResumeResponseOut(BaseModel):
     id: str
     request_id: str
     strengths: list[str]
@@ -20,3 +30,4 @@ class ResumeResponse(BaseModel):
     recommendations: list[str]
     missing_skills: list[str]
     score: int
+    professional_summary: str
