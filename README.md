@@ -43,6 +43,7 @@ app/
 Clone repository
     ```bash
    git clone https://github.com/jeffamady/ai-resume-analyzer.git
+   ```
 
 Install dependencies:
    ```bash
