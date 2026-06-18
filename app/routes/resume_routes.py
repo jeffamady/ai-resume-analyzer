@@ -11,7 +11,12 @@ import os
 # # Verify it worked
 # print(os.getcwd())
 
-from app.model.resume_model import ResumeRequest, ResumeResponse, ResumeResponseOut
+from app.model.resume_model import (
+    ResumeRequest,
+    ResumeRequestOut,
+    ResumeResponse,
+    ResumeResponseOut,
+)
 from app.storage import (
     load_resume_requests,
     save_resume_request,
@@ -35,13 +40,13 @@ def read_root():
     return {"message": "Hello, Welcome to the AI Resume Analyzer!"}
 
 
-@resume_router.get("/requests", response_model=list[ResumeRequest])
+@resume_router.get("/requests", response_model=list[ResumeRequestOut])
 def get_resume_requests():
     """Get all resume requests"""
     return load_resume_requests()
 
 
-@resume_router.get("/requests/{request_id}", response_model=ResumeRequest)
+@resume_router.get("/requests/{request_id}", response_model=ResumeRequestOut)
 def get_resume_request(request_id: str):
     """Get a specific resume request by ID"""
     resume_requests = load_resume_requests()
@@ -51,13 +56,13 @@ def get_resume_request(request_id: str):
     raise HTTPException(status_code=404, detail="Resume request not found")
 
 
-@resume_router.get("/responses", response_model=list[ResumeResponse])
+@resume_router.get("/responses", response_model=list[ResumeResponseOut])
 def get_resume_responses():
     """Get all resume responses"""
     return load_resume_responses()
 
 
-@resume_router.get("/responses/{response_id}", response_model=ResumeResponse)
+@resume_router.get("/responses/{response_id}", response_model=ResumeResponseOut)
 def get_resume_response(response_id: str):
     """Get a specific resume response by ID"""
     resume_responses = load_resume_responses()
