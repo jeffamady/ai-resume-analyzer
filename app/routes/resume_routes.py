@@ -1,5 +1,17 @@
 from fastapi import APIRouter, HTTPException, status
-from app.model.resume_model import ResumeRequest, ResumeResponse
+
+# # todo jna remove after
+# import sys
+import os
+
+# # Add project root to path
+# sys.path.insert(0, os.chdir("../.."))
+# os.chdir("../..")
+
+# # Verify it worked
+# print(os.getcwd())
+
+from app.model.resume_model import ResumeRequest, ResumeResponse, ResumeResponseOut
 from app.storage import (
     load_resume_requests,
     save_resume_request,
@@ -7,8 +19,15 @@ from app.storage import (
     save_resume_response,
 )
 import uuid
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 resume_router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 @resume_router.get("/")
@@ -49,31 +68,74 @@ def get_resume_response(response_id: str):
 
 
 @resume_router.post(
-    "/analyze", response_model=ResumeResponse, status_code=status.HTTP_201_CREATED
+    "/analyze", response_model=ResumeResponseOut, status_code=status.HTTP_201_CREATED
 )
-def analyze_resume(resume: ResumeRequest):
+def analyze_resume(resume_request: ResumeRequest):
     """Analyze the resume data and return the results"""
     resume_requests = load_resume_requests()
     new_request = {
         "id": str(uuid.uuid4()),
-        "resume_data": resume.resume_data,
-        "job_description": resume.job_description,
+        "resume_data": resume_request.resume_data,
+        "job_description": resume_request.job_description,
     }
     resume_requests.append(new_request)
     save_resume_request(resume_requests)
     # Here use the AI model to analyze the resume and job description, and generate the response
+    system_prompt = """
+    You are a professional recruiter.
+
+    Analyze the provided resume and evaluate it objectively.
+
+    Return:
+
+    - strengths: list[str]
+    - weaknesses: list[str]
+    - recommendations: list[str]
+    - missing_skills: list[str]
+    - score: int (0-100)
+    - professional_summary: str
+
+    Scoring Guidelines:
+
+    90-100 : Excellent resume
+    80-89  : Strong resume
+    70-79  : Good resume
+    60-69  : Needs improvement
+    0-59   : Weak resume
+
+    Be concise and practical.
+    """
+    user_prompt = f"""Resume Data:
+        {resume_request.resume_data}    
+
+        Job Description:
+    {resume_request.job_description}
+
+"""
+
+    ai_resume_response = client.responses.parse(
+        model="gpt-5.5",
+        input=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        text_format=ResumeResponse,
+    )
+
+    ai_resume = ai_resume_response.output_parsed
+
+    print("AI Resume Analysis Result:", ai_resume)
 
     # When received the AI response, save it to the storage
     resume_response = {
         "id": str(uuid.uuid4()),
         "request_id": new_request["id"],
-        "strengths": ["Python", "Data Analysis"],
-        "weaknesses": ["Public Speaking"],
-        "recommendations": [
-            "Consider improving public speaking skills through practice and training.",
-        ],
-        "missing_skills": ["Project Management", "Communication"],
-        "score": 85,
+        "strengths": ai_resume.strengths,
+        "weaknesses": ai_resume.weaknesses,
+        "recommendations": ai_resume.recommendations,
+        "missing_skills": ai_resume.missing_skills,
+        "score": ai_resume.score,
+        "professional_summary": ai_resume.professional_summary,
     }
 
     resume_responses = load_resume_responses()
