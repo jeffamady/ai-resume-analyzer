@@ -1,0 +1,15 @@
+[
+    {
+      "resume_data": "Michael Johnson\n\nSoftware Engineer\n\nSummary:\nSoftware Engineer with 5 years of experience developing scalable web and mobile applications. Experienced in Python, Java, AWS, Docker, PostgreSQL, and REST APIs. Led a team of four engineers and improved API response times by 35%.\n\nExperience:\nSenior Software Engineer - ABC Technologies (2021-Present)\n- Developed backend services using Python and FastAPI.\n- Built REST APIs used by over 500,000 users.\n- Reduced system latency by 35%.\n- Mentored junior developers.\n\nSoftware Engineer - Tech Solutions (2018-2021)\n- Developed internal tools using Java and Spring Boot.\n- Collaborated with cross-functional teams.\n\nEducation:\nBachelor of Science in Computer Science\n\nSkills:\nPython, Java, AWS, Docker, FastAPI, PostgreSQL, Git, REST APIs, Leadership",
+      "job_description": "Python Backend Developer\n\nRequirements:\n- 3+ years of experience with Python\n- Experience with FastAPI or Flask\n- PostgreSQL\n- Docker\n- AWS\n- REST APIs\n- Git\n- CI/CD knowledge\n\nResponsibilities:\n- Build scalable APIs\n- Maintain backend systems\n- Collaborate with frontend teams"
+    },
+
+    {
+      "resume_data": "Sarah Williams\n\nSummary:\nSoftware developer with experience creating applications and websites.\n\nExperience:\nDeveloper - XYZ Company\n- Worked on different projects.\n- Fixed bugs.\n- Collaborated with team members.\n\nSkills:\nPython, HTML, CSS, JavaScript",
+      "job_description": "Junior Data Analyst\n\nRequirements:\n- SQL\n- Excel\n- Power BI\n- Python\n- Tableau\n- Data visualization\n- Communication skills\n\nResponsibilities:\n- Create reports and dashboards\n- Analyze business trends\n- Present findings to stakeholders"
+    },
+    {
+      "resume_data": "John Smith\n\nSummary:\nLooking for opportunities in software engineering.\n\nExperience:\nWorked on some projects.\n\nSkills:\nPython",
+      "job_description": "AI Engineer\n\nRequirements:\n- Python\n- Machine Learning\n- OpenAI API\n- LangChain\n- FastAPI\n- Vector Databases\n- Prompt Engineering\n- Docker\n- AWS\n\nResponsibilities:\n- Build AI applications\n- Develop intelligent agents\n- Integrate LLM APIs\n- Deploy AI systems"
+    }
+]

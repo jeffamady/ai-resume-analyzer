@@ -13,7 +13,6 @@ class ResumeRequestOut(BaseModel):
 
 
 class ResumeResponse(BaseModel):
-    request_id: str
     strengths: list[str]
     weaknesses: list[str]
     recommendations: list[str]
