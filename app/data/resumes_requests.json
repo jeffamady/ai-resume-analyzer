@@ -1,0 +1,7 @@
+[
+  {
+    "id": "4a6221e8-a498-4839-a731-0440181f4a58",
+    "resume_data": "Michael Johnson\n\nSoftware Engineer\n\nSummary:\nSoftware Engineer with 5 years of experience developing scalable web and mobile applications. Experienced in Python, Java, AWS, Docker, PostgreSQL, and REST APIs. Led a team of four engineers and improved API response times by 35%.\n\nExperience:\nSenior Software Engineer - ABC Technologies (2021-Present)\n- Developed backend services using Python and FastAPI.\n- Built REST APIs used by over 500,000 users.\n- Reduced system latency by 35%.\n- Mentored junior developers.\n\nSoftware Engineer - Tech Solutions (2018-2021)\n- Developed internal tools using Java and Spring Boot.\n- Collaborated with cross-functional teams.\n\nEducation:\nBachelor of Science in Computer Science\n\nSkills:\nPython, Java, AWS, Docker, FastAPI, PostgreSQL, Git, REST APIs, Leadership",
+    "job_description": "Python Backend Developer\n\nRequirements:\n- 3+ years of experience with Python\n- Experience with FastAPI or Flask\n- PostgreSQL\n- Docker\n- AWS\n- REST APIs\n- Git\n- CI/CD knowledge\n\nResponsibilities:\n- Build scalable APIs\n- Maintain backend systems\n- Collaborate with frontend teams"
+  }
+]
