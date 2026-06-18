@@ -148,3 +148,21 @@ def analyze_resume(resume_request: ResumeRequest):
     save_resume_response(resume_responses)
 
     return resume_response
+
+
+@resume_router.delete("/requests/{request_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_resume_request(request_id: str):
+    """Delete a specific resume request by ID"""
+    resume_requests = load_resume_requests()
+    resume_responses = load_resume_responses()
+    # Also delete associated responses
+    updated_responses = [
+        resp for resp in resume_responses if resp["request_id"] != request_id
+    ]
+    save_resume_response(updated_responses)
+    updated_requests = [req for req in resume_requests if req["id"] != request_id]
+
+    if len(updated_requests) == len(resume_requests):
+        raise HTTPException(status_code=404, detail="Resume request not found")
+    save_resume_request(updated_requests)
+    return
