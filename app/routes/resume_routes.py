@@ -11,8 +11,9 @@ from app.storage import (
     load_resume_responses,
     save_resume_response,
 )
-import uuid
+from app.services.request_services import create_and_save_request
 from app.services.ai_services import analyze_resume_with_ai
+from app.services.response_services import create_and_save_response
 
 
 resume_router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
@@ -60,34 +61,16 @@ def get_resume_response(response_id: str):
 )
 def analyze_resume(resume_request: ResumeRequest):
     """Analyze the resume data and return the results"""
-    resume_requests = load_resume_requests()
-    new_request = {
-        "id": str(uuid.uuid4()),
-        "resume_data": resume_request.resume_data,
-        "job_description": resume_request.job_description,
-    }
-    resume_requests.append(new_request)
-    save_resume_request(resume_requests)
-    # Here use the AI model to analyze the resume and job description, and generate the response
+
+    new_request = create_and_save_request(resume_request)
+
     ai_response = analyze_resume_with_ai(resume_request)
 
     print("AI Resume Analysis Result:", ai_response)
 
-    # When received the AI response, save it to the storage
-    resume_response = {
-        "id": str(uuid.uuid4()),
-        "request_id": new_request["id"],
-        "strengths": ai_response["strengths"],
-        "weaknesses": ai_response["weaknesses"],
-        "recommendations": ai_response["recommendations"],
-        "missing_skills": ai_response["missing_skills"],
-        "score": ai_response["score"],
-        "professional_summary": ai_response["professional_summary"],
-    }
-
-    resume_responses = load_resume_responses()
-    resume_responses.append(resume_response)
-    save_resume_response(resume_responses)
+    resume_response = create_and_save_response(
+        ai_response=ai_response, new_request=new_request
+    )
 
     return resume_response
 
