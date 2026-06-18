@@ -6,7 +6,7 @@ class ResumeRequest(BaseModel):
     job_description: str
 
 
-class ResumeAnalysisResponse(BaseModel):
+class ResumeResponse(BaseModel):
     strengths: list[str]
     weaknesses: list[str]
     recommendations: list[str]
