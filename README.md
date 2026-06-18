@@ -41,12 +41,12 @@ app/
 ## Quick Start
 
 Clone repository
-    ```bash
+   ```bash
    git clone https://github.com/jeffamady/ai-resume-analyzer.git
    ```
 
 Install dependencies:
-   ```bash
+   ```text
    uv sync
    ```
 
