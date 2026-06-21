@@ -12,9 +12,10 @@ from app.storage import (
     load_resume_responses,
     save_resume_response,
 )
-from app.services.request_services import create_and_save_request
+
 from app.services.response_services import create_and_save_response
 from app.services.ai_service import AiService
+from app.services.request_service import RequestService
 
 from dotenv import load_dotenv
 import os
@@ -24,6 +25,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 load_dotenv()
 
 ai_service = AiService(client)
+request_service = RequestService()
 
 resume_router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
 
@@ -71,7 +73,7 @@ def get_resume_response(response_id: str):
 def analyze_resume(resume_request: ResumeRequest):
     """Analyze the resume data and return the results"""
 
-    new_request = create_and_save_request(resume_request)
+    new_request = request_service.create_and_save_request(resume_request)
 
     # ai_response = analyze_resume_with_ai(resume_request)
     ai_response = ai_service.analyze_resume_with_ai(resume_request)
