@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
+from openai import OpenAI
 
 from app.model.resume_model import (
     ResumeRequest,
@@ -12,9 +13,17 @@ from app.storage import (
     save_resume_response,
 )
 from app.services.request_services import create_and_save_request
-from app.services.ai_services import analyze_resume_with_ai
 from app.services.response_services import create_and_save_response
+from app.services.ai_service import AiService
 
+from dotenv import load_dotenv
+import os
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+load_dotenv()
+
+ai_service = AiService(client)
 
 resume_router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
 
@@ -64,7 +73,8 @@ def analyze_resume(resume_request: ResumeRequest):
 
     new_request = create_and_save_request(resume_request)
 
-    ai_response = analyze_resume_with_ai(resume_request)
+    # ai_response = analyze_resume_with_ai(resume_request)
+    ai_response = ai_service.analyze_resume_with_ai(resume_request)
 
     print("AI Resume Analysis Result:", ai_response)
 
