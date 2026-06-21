@@ -13,7 +13,7 @@ from app.storage import (
     save_resume_response,
 )
 
-from app.services.response_services import create_and_save_response
+from app.services.response_service import ResponseService
 from app.services.ai_service import AiService
 from app.services.request_service import RequestService
 
@@ -26,6 +26,7 @@ load_dotenv()
 
 ai_service = AiService(client)
 request_service = RequestService()
+response_service = ResponseService()
 
 resume_router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
 
@@ -80,7 +81,7 @@ def analyze_resume(resume_request: ResumeRequest):
 
     print("AI Resume Analysis Result:", ai_response)
 
-    resume_response = create_and_save_response(
+    resume_response = response_service.create_and_save_response(
         ai_response=ai_response, new_request=new_request
     )
 
